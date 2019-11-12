@@ -27,11 +27,15 @@ import com.example.android.dagger.registration.termsandconditions.TermsAndCondit
 import javax.inject.Inject
 
 class RegistrationActivity : AppCompatActivity() {
-
+    // @Inject annotated fields will be provided by Dagger
     @Inject
     lateinit var registrationViewModel: RegistrationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Grabs instance of the application graph
+        // and populates @Inject fields with objects from the graph
+        (application as MyApplication).appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
 
